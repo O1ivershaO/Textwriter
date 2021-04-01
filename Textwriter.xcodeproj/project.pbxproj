@@ -14,6 +14,7 @@
 		D93F7C9F25FF462B00E601C5 /* TextwriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F7C9E25FF462B00E601C5 /* TextwriterTests.swift */; };
 		D93F7CAA25FF462B00E601C5 /* TextwriterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D93F7CA925FF462B00E601C5 /* TextwriterUITests.swift */; };
 		D9B377B92613A2DB00771077 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B377B82613A2DB00771077 /* Settings.swift */; };
+		D9B377BE26159D5B00771077 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B377BD26159D5B00771077 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D93F7CA925FF462B00E601C5 /* TextwriterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextwriterUITests.swift; sourceTree = "<group>"; };
 		D93F7CAB25FF462B00E601C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9B377B82613A2DB00771077 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		D9B377BD26159D5B00771077 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				D93F7C9025FF462B00E601C5 /* Assets.xcassets */,
 				D93F7C9525FF462B00E601C5 /* Info.plist */,
 				D93F7C9225FF462B00E601C5 /* Preview Content */,
+				D9B377BD26159D5B00771077 /* ImagePicker.swift */,
 			);
 			path = Textwriter;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9B377B92613A2DB00771077 /* Settings.swift in Sources */,
+				D9B377BE26159D5B00771077 /* ImagePicker.swift in Sources */,
 				D93F7C8F25FF462B00E601C5 /* ContentView.swift in Sources */,
 				D93F7C8D25FF462B00E601C5 /* TextwriterApp.swift in Sources */,
 			);

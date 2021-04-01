@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
+    
+    @State private var isShowPhotoLibrary = false
+    @State private var image = UIImage()
+    
+    
     var body: some View {
         NavigationView{
             ZStack{
@@ -21,23 +27,37 @@ struct ContentView: View {
                         .foregroundColor(.black)
                         .font(.largeTitle)
                         .gradientForeground(colors: [Color.red, Color.black, Color.black,Color.black])
-                    HStack{
+                    
+                  
+                    
+                    HStack(spacing: 20){
                         NavigationLink(destination: Settings()) {
                             Image(systemName:"gearshape.2.fill")
                                 .resizable()
                                 .frame(width: 130.0, height:100)
                                 .foregroundColor(.black)
-                             }.buttonStyle(PlainButtonStyle())
-                        Spacer()
-                            .frame(width: 50)
+                        }.buttonStyle(PlainButtonStyle())
                         
-                        Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
+                        Image(uiImage: self.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 70)
+                            .edgesIgnoringSafeArea(.all)
+                            .cornerRadius(7)
+                            .background(Color.gray)
+                            .cornerRadius(10)
+                        Button(action: {
+                            self.isShowPhotoLibrary = true
+                        })  {
                             Image(systemName:"arrow.up.doc")
                                 .resizable()
                                 .frame(width: 80.0, height: 90)
                                 .foregroundColor(.black)
-                             }.buttonStyle(PlainButtonStyle())
-                        }
+                        }.buttonStyle(PlainButtonStyle())
+                    }
+                    
+                    
+                    
                     Text("//converted text showed here//")
                         .font(.system(size: 20, design: .rounded))
                         .fontWeight(.regular)
@@ -45,17 +65,28 @@ struct ContentView: View {
                         .font(.largeTitle)
                         .frame(width: 400, height: 380, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                     
+                    
+                    
                     Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
                         Image(systemName:"doc.on.doc")
                             .resizable()
                             .frame(width: 80.0, height: 90)
                             .foregroundColor(.black)
-                         }.buttonStyle(PlainButtonStyle())
-                    }
+                    }.buttonStyle(PlainButtonStyle())
+                    
                 }
+                .sheet(isPresented: $isShowPhotoLibrary){
+                    ImagePicker(selectedImage: self.$image, sourceType: .photoLibrary)
+                }
+                
+                
+                
             }
-        }
-}
+            }//ZStack
+        
+    }//Nav
+}//body
+
 
 
 struct ContentView_Previews: PreviewProvider {
@@ -63,6 +94,10 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+
+
 
 extension View {
     public func gradientForeground(colors: [Color]) -> some View {
