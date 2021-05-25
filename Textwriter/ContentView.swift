@@ -7,6 +7,12 @@
 
 import SwiftUI
 import UIKit
+import Vision
+import CoreImage
+import CoreImage.CIFilterBuiltins
+
+
+
 
 extension UIColor {
     var rgba: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -38,10 +44,31 @@ extension UIImage {
     
 }
 
+func recognizeTextHandler(request: VNRequest, error: Error?) {
+    guard let observations =
+            request.results as? [VNRecognizedTextObservation] else {
+        return
+    }
+    let recognizedStrings = observations.compactMap { observation in
+        // Return the string of the top VNRecognizedText instance.
+        return observation.topCandidates(1).first?.string
+    }
+    
+    // Process the recognized strings.
+    
+}
+
+func load(){
+    guard let cgImage = UIImage(named: "text")?.cgImage else { return }
+}
+
 struct ContentView: View {
     
+   
     
-    let RGB = UIImage(named:"text")
+    let requestHandler = VNImageRequestHandler(cgImage: cgImage)
+    let request = VNRecognizeTextRequest(completion: recognizeTextHandler)
+    
     @State private var showingPhotoLibrary = false
     @State private var showingScanningView = false
     @State private var image = UIImage()
@@ -78,7 +105,7 @@ struct ContentView: View {
                             ScanDocumentView(recognizedText: self.$recognizedText)
                         }
                         
-                        Image(uiImage: self.image)
+                        Image("text")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 70)
@@ -106,7 +133,7 @@ struct ContentView: View {
                             .fontWeight(.regular)
                             .foregroundColor(.black)
                             .font(.largeTitle)
-                            .frame(width: 400, height: 380, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: 400, height: 380, alignment: .center)
                     }
                     
                     
@@ -120,8 +147,19 @@ struct ContentView: View {
                         }.buttonStyle(PlainButtonStyle())
                         
                         Button(action: {
-                            let aColor = RGB!.getPixelColor(pos: CGPoint(x: 60, y: 70))
-                            print(aColor.rgba)
+                            //let aColor = cgImage!.getPixelColor(pos: CGPoint(x: 60, y: 70))
+                            //print(aColor.rgba)
+                            load()
+                            
+                            do {
+                                // Perform the text-recognition request.
+                                try requestHandler.perform([request])
+                            } catch {
+                                print("Unable to perform the requests: \(error).")
+                            }
+                            
+                            recognizeTextHandler(request: <#T##VNRequest#>, error: <#T##Error?#>)
+                            
                         }) {
                             Image(systemName:"doc.on.doc")
                                 .resizable()
